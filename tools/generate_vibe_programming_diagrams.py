@@ -13,8 +13,8 @@ class VibeProgrammingDiagramGenerator(DiagramGenerator):
     
     def create_flow_diagram(self, output_path: str):
         """创建 Vibe Programming 流程图"""
-        self.width = 1400
-        self.height = 1200
+        self.width = 1500
+        self.height = 1300
         self.create_canvas()
         
         # 标题
@@ -24,117 +24,122 @@ class VibeProgrammingDiagramGenerator(DiagramGenerator):
         # 1. 起点 - 人给出模糊提示词
         self.draw_text_box(
             '1. 人：给出模糊提示词\n"做一个用户管理页面"',
-            (150, 120, 550, 220),
-            font_size=18,
+            (100, 130, 550, 240),
+            font_size=20,
             bg_color=Color.HUMAN,
             border_width=3
         )
         
-        # 箭头1
-        self.draw_arrow((350, 220), (350, 300), Color.BLACK)
-        self.draw.text((380, 250), 'context:\n语言、风格', 
+        # 箭头1 - 增加间距
+        self.draw_arrow((325, 240), (325, 310), Color.BLACK, width=2)
+        self.draw.text((360, 265), 'context:\n语言、风格', 
                       font=self.get_font(14), fill=Color.GRAY)
         
         # 2. AI生成代码
         self.draw_text_box(
             '2. AI：直接生成实现\n• 组件结构\n• 数据模型\n• 交互逻辑',
-            (120, 300, 580, 450),
-            font_size=18,
+            (80, 310, 570, 480),
+            font_size=20,
             bg_color=Color.AI,
             border_width=3
         )
         
         # 箭头2
-        self.draw_arrow((350, 450), (350, 530), Color.BLACK)
+        self.draw_arrow((325, 480), (325, 560), Color.BLACK, width=2)
         
         # 3. 代码状态
         self.draw_text_box(
             '3. 可运行的代码',
-            (150, 530, 550, 610),
+            (100, 560, 550, 660),
             font_size=24,
             bg_color=Color.CODE,
             border_width=3
         )
         
         # 箭头3
-        self.draw_arrow((350, 610), (350, 690), Color.BLACK)
+        self.draw_arrow((325, 660), (325, 740), Color.BLACK, width=2)
         
         # 4. 决策点
         self.draw_text_box(
             '4. 人：测试和反馈',
-            (100, 690, 600, 790),
-            font_size=24,
+            (80, 740, 570, 850),
+            font_size=26,
             bg_color=Color.DECISION,
             border_width=3
         )
         
-        # 分支1: 运行错误
+        # 分支1: 运行错误 - 调整位置和间距
         self.draw_text_box(
             '情况1: 运行错误\n"编译失败"、"依赖缺失"',
-            (700, 120, 1300, 250),
-            font_size=18,
+            (750, 130, 1400, 270),
+            font_size=20,
             bg_color='#FFE4E4',
             border_color=Color.RED,
             border_width=3
         )
-        self.draw_arrow((600, 710), (700, 185), Color.RED, width=2)
-        self.draw_arrow((700, 210), (580, 360), Color.RED)
-        self.draw.text((620, 280), '粘贴错误信息', 
-                      font=self.get_font(14), fill=Color.RED)
+        # 反馈箭头 - 优化路径
+        self.draw_arrow((570, 760), (750, 200), Color.RED, width=3)
+        self.draw.text((640, 460), '粘贴错误\n信息', 
+                      font=self.get_font(16), fill=Color.RED)
+        # 回到 AI 的箭头
+        self.draw_arrow((750, 240), (570, 380), Color.RED, width=2)
         
         # 分支2: 功能不符
         self.draw_text_box(
             '情况2: 功能不符\n"需要action buttons"\n"添加表单验证"',
-            (700, 300, 1300, 460),
-            font_size=18,
+            (750, 320, 1400, 490),
+            font_size=20,
             bg_color='#FFF8E4',
             border_color=Color.ORANGE,
             border_width=3
         )
-        self.draw_arrow((600, 740), (700, 380), Color.ORANGE, width=2)
-        self.draw_arrow((700, 400), (580, 390), Color.ORANGE)
-        self.draw.text((620, 390), '提出改进要求', 
-                      font=self.get_font(14), fill=Color.ORANGE)
+        # 反馈箭头
+        self.draw_arrow((570, 795), (750, 405), Color.ORANGE, width=3)
+        self.draw.text((640, 590), '提出改进\n要求', 
+                      font=self.get_font(16), fill=Color.ORANGE)
+        # 回到 AI 的箭头
+        self.draw_arrow((750, 440), (570, 410), Color.ORANGE, width=2)
         
         # 分支3: 满足预期
         self.draw_text_box(
             '情况3: 达到预期 ✓\n功能完成！',
-            (700, 510, 1300, 630),
-            font_size=20,
+            (750, 540, 1400, 670),
+            font_size=24,
             bg_color='#E4FFE4',
             border_color=Color.GREEN,
             border_width=3,
             text_color=Color.DARK_GREEN
         )
-        self.draw_arrow((600, 740), (700, 570), Color.GREEN, width=2)
-        self.draw_arrow((1000, 630), (1000, 720), Color.GREEN, width=4)
+        self.draw_arrow((570, 820), (750, 605), Color.GREEN, width=3)
+        self.draw_arrow((1075, 670), (1075, 750), Color.GREEN, width=4)
         
         self.draw_text_box(
             '进入下一个 Feature',
-            (700, 720, 1300, 800),
-            font_size=24,
+            (750, 750, 1400, 850),
+            font_size=26,
             bg_color='#C8FFC8',
             border_color=Color.DARK_GREEN,
             border_width=3,
             text_color=Color.DARK_GREEN
         )
         
-        # 图例
+        # 图例 - 增加间距
         legend_items = [
             ('人的活动', Color.HUMAN),
             ('AI的活动', Color.AI),
             ('代码状态', Color.CODE),
             ('决策点', Color.DECISION),
         ]
-        self.draw_legend(legend_items, (100, 880))
+        self.draw_legend(legend_items, (100, 960), spacing=280)
         
         # 核心理念
         self.draw_text_box(
             '💡 核心：快速迭代，边做边调整',
-            (100, 1050, 700, 1120),
-            font_size=24,
+            (100, 1150, 750, 1230),
+            font_size=26,
             bg_color='#FFFACD',
-            border_color=Color.ORANGE
+            border_color=Color.ORANGE,
+            border_width=2
         )
         
         self.save(output_path)
@@ -277,7 +282,10 @@ def main():
     # 确定输出目录
     script_dir = os.path.dirname(os.path.abspath(__file__))
     blog_dir = os.path.dirname(script_dir)
-    output_dir = os.path.join(blog_dir, 'source/_posts')
+    output_dir = os.path.join(blog_dir, 'source/_posts/使用-Cursor-编程的感想')
+    
+    # 确保输出目录存在
+    os.makedirs(output_dir, exist_ok=True)
     
     # 创建生成器
     generator = VibeProgrammingDiagramGenerator()

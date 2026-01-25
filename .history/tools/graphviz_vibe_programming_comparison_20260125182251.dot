@@ -1,0 +1,123 @@
+digraph VibeProgrammingComparison {
+    // 图表设置
+    graph [
+        rankdir=TB
+        bgcolor=white
+        fontname="Arial,Microsoft YaHei,SimHei"
+        fontsize=14
+        splines=ortho
+        nodesep=1.0
+        ranksep=0.8
+        compound=true
+    ]
+    
+    node [
+        shape=box
+        style="rounded,filled"
+        fontname="Arial,Microsoft YaHei,SimHei"
+        fontsize=13
+        margin=0.3
+        width=3.0
+        height=0.6
+    ]
+    
+    edge [
+        fontname="Arial,Microsoft YaHei,SimHei"
+        fontsize=11
+    ]
+    
+    // 标题
+    Title [
+        label="传统开发方式 vs Vibe Programming"
+        shape=plaintext
+        fontsize=20
+        fontcolor=black
+    ]
+    
+    // 左侧：传统方式
+    subgraph cluster_traditional {
+        label="传统开发方式"
+        fontsize=16
+        style=dashed
+        color=gray
+        
+        T1 [label="1. 需求文档" fillcolor="#FFD4D4"]
+        T2 [label="2. 概要设计" fillcolor="#FFE4D4"]
+        T3 [label="3. 详细设计" fillcolor="#FFF4D4"]
+        T4 [label="4. 编码实现" fillcolor="#E4F4FF"]
+        T5 [label="5. 测试" fillcolor="#E4FFE4"]
+        T6 [label="6. 部署" fillcolor="#E4E4FF"]
+        
+        TFeatures [
+            shape=plaintext
+            label=<
+                <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#FFE4E4">
+                    <TR><TD ALIGN="LEFT"><B>特点：</B></TD></TR>
+                    <TR><TD ALIGN="LEFT">❌ 前期需要想清楚所有细节</TD></TR>
+                    <TR><TD ALIGN="LEFT">❌ 设计错误成本高</TD></TR>
+                    <TR><TD ALIGN="LEFT">❌ 周期长，反馈慢</TD></TR>
+                    <TR><TD ALIGN="LEFT">❌ 需要手写大量代码</TD></TR>
+                </TABLE>
+            >
+        ]
+        
+        T1 -> T2 -> T3 -> T4 -> T5 -> T6
+        T6 -> TFeatures [style=invis]
+    }
+    
+    // 右侧：Vibe Programming
+    subgraph cluster_vibe {
+        label="Vibe Programming"
+        fontsize=16
+        style=dashed
+        color=green
+        
+        V1 [label="模糊需求" fillcolor="#FFE5B4"]
+        V2 [label="AI生成" fillcolor="#B4D7FF"]
+        V3 [label="测试反馈" fillcolor="#FFE4E4"]
+        
+        VCenter [
+            label="快速\n迭代"
+            shape=ellipse
+            fillcolor="#FFFACD"
+            color=orange
+            penwidth=3
+            fontsize=15
+        ]
+        
+        VFeatures [
+            shape=plaintext
+            label=<
+                <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#E4FFE4">
+                    <TR><TD ALIGN="LEFT"><B>特点：</B></TD></TR>
+                    <TR><TD ALIGN="LEFT">✅ 可以边做边想</TD></TR>
+                    <TR><TD ALIGN="LEFT">✅ 试错成本极低</TD></TR>
+                    <TR><TD ALIGN="LEFT">✅ 即时反馈，快速调整</TD></TR>
+                    <TR><TD ALIGN="LEFT">✅ AI自动生成代码</TD></TR>
+                </TABLE>
+            >
+        ]
+        
+        V1 -> V2 -> V3
+        V3 -> V1 [label="循环" style=dashed color=blue]
+        
+        VCenter [style=invis]
+        V2 -> VCenter [style=invis]
+        VCenter -> VFeatures [style=invis]
+    }
+    
+    // 底部说明
+    Note [
+        label="核心区别：传统方式是\"线性瀑布\"，Vibe Programming是\"快速迭代循环\""
+        shape=box
+        style="rounded,filled"
+        fillcolor="#FFFACD"
+        color=orange
+        fontsize=13
+        width=10
+    ]
+    
+    Title [rank=source]
+    TFeatures -> Note [style=invis]
+    VFeatures -> Note [style=invis]
+}

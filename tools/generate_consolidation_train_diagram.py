@@ -15,15 +15,15 @@ class ConsolidationTrainDiagramGenerator(DiagramGenerator):
     
     def create_consolidation_train_diagram(self, output_path: str):
         """创建 Consolidation Train 工作流程图"""
-        self.width = 1600
-        self.height = 1200
+        self.width = 1700
+        self.height = 1300
         self.create_canvas()
         
         # 标题
         self.draw_text_multiline(
             'Consolidation Train 工作流程',
-            (self.width//2, 40),
-            36,
+            (self.width//2, 50),
+            38,
             Color.BLACK,
             'center'
         )
@@ -31,8 +31,8 @@ class ConsolidationTrainDiagramGenerator(DiagramGenerator):
         # 副标题
         self.draw_text_multiline(
             '双轨并行：持续需求 + 自动化测试修复',
-            (self.width//2, 90),
-            20,
+            (self.width//2, 105),
+            22,
             Color.GRAY,
             'center'
         )
@@ -56,16 +56,16 @@ class ConsolidationTrainDiagramGenerator(DiagramGenerator):
     
     def _draw_dual_tracks(self):
         """绘制双轨道"""
-        track_y1 = 200  # 主力开发轨道
-        track_y2 = 500  # Consolidation 轨道
-        track_start = 150
-        track_end = 1450
+        track_y1 = 230  # 主力开发轨道
+        track_y2 = 480  # Consolidation 轨道
+        track_start = 200
+        track_end = 1550
         
         # 轨道 1: 主力开发 Session
         self.draw_text_box(
             '主力开发 Session (Terminal 1)\n专注创造',
-            (track_start - 120, track_y1 - 40, track_start, track_y1 + 40),
-            font_size=14,
+            (30, track_y1 - 50, 190, track_y1 + 50),
+            font_size=15,
             bg_color=Color.HUMAN,
             border_width=2
         )
@@ -74,14 +74,14 @@ class ConsolidationTrainDiagramGenerator(DiagramGenerator):
         self.draw.line(
             [(track_start, track_y1), (track_end, track_y1)],
             fill=Color.BLACK,
-            width=4
+            width=5
         )
         
         # 轨道 2: Consolidation Train
         self.draw_text_box(
             'Consolidation Train\n自动化测试修复',
-            (track_start - 120, track_y2 - 40, track_start, track_y2 + 40),
-            font_size=14,
+            (30, track_y2 - 50, 190, track_y2 + 50),
+            font_size=15,
             bg_color=Color.AI,
             border_width=2
         )
@@ -90,137 +90,141 @@ class ConsolidationTrainDiagramGenerator(DiagramGenerator):
         self.draw.line(
             [(track_start, track_y2), (track_end, track_y2)],
             fill=Color.BLACK,
-            width=4
+            width=5
         )
         
-        # 绘制连接箭头
+        # 绘制连接箭头 - 调整位置
+        arrow_x = track_start + 100
         self.draw_curved_arrow(
-            (track_start + 200, track_y1 + 10),
-            (track_start + 200, track_y2 - 10),
-            control_offset=(50, 0),
+            (arrow_x, track_y1 + 15),
+            (arrow_x, track_y2 - 15),
+            control_offset=(60, 0),
             color=Color.GRAY,
             width=2
         )
         self.draw.text(
-            (track_start + 250, (track_y1 + track_y2) // 2 - 10),
+            (arrow_x + 65, (track_y1 + track_y2) // 2 - 15),
             '需求登上\nTrain',
-            font=self.get_font(14),
+            font=self.get_font(15),
             fill=Color.GRAY
         )
     
     def _draw_timeline(self):
         """绘制时间线"""
-        track_start = 150
+        track_start = 200
         time_points = [
-            (track_start + 200, 'T0\n提需求1'),
-            (track_start + 500, 'T0+5min\nTrain发车'),
-            (track_start + 800, 'T0+10min\n提需求2'),
-            (track_start + 1100, 'T0+15min\nTrain到站'),
+            (track_start + 100, 'T0\n提需求1'),
+            (track_start + 450, 'T0+10min\n提需求2'),
+            (track_start + 800, '到站\n测试通过'),
+            (track_start + 1150, 'T0+15min\nTrain到站'),
         ]
         
         for x, label in time_points:
             # 垂直线
             self.draw.line(
-                [(x, 150), (x, 550)],
+                [(x, 165), (x, 565)],
                 fill=Color.LIGHT_GRAY,
                 width=2
             )
             # 时间标签
             self.draw_text_multiline(
                 label,
-                (x, 580),
-                14,
+                (x, 595),
+                15,
                 Color.GRAY,
                 'center'
             )
     
     def _draw_train_process(self):
         """绘制 Train 运行过程"""
-        track_y1 = 200
-        track_y2 = 500
-        track_start = 150
+        track_y1 = 230
+        track_y2 = 480
+        track_start = 200
         
         # T0: 人提需求 1
-        x1 = track_start + 200
-        self.draw_circle((x1, track_y1), 20, '#FFE5B4', Color.BLACK, 3)
-        self.draw_text_multiline('需求1', (x1, track_y1 - 8), 14, Color.BLACK, 'center')
+        x1 = track_start + 100
+        self.draw_circle((x1, track_y1), 25, '#FFE5B4', Color.BLACK, 3)
+        self.draw_text_multiline('需求1', (x1, track_y1 - 10), 16, Color.BLACK, 'center')
         
-        # T0+5min: Train 发车
-        x2 = track_start + 500
+        # T0+5min: Train 发车 - 第一个 Train
+        x_train1 = track_start + 250
         
         # 绘制火车头
-        train_box = (x2 - 80, track_y2 - 50, x2 + 80, track_y2 + 50)
+        train_box = (x_train1 - 90, track_y2 - 60, x_train1 + 90, track_y2 + 60)
         self.draw_rounded_rectangle(
             train_box,
             15,
             '#B4D7FF',
             Color.BLUE,
-            3
+            4
         )
         self.draw_text_multiline(
             '🚂 Train\n需求1',
-            (x2, track_y2 - 20),
-            16,
+            (x_train1, track_y2 - 10),
+            18,
             Color.BLACK,
             'center'
         )
         
-        # Train 的任务列表
+        # Train 的任务列表 - 放在下方，不重叠
+        task_y = track_y2 + 70
         self.draw_text_box(
             '编译\n↓\n测试\n↓\n修复',
-            (x2 - 70, track_y2 + 60, x2 + 70, track_y2 + 180),
-            font_size=14,
+            (x_train1 - 70, task_y, x_train1 + 70, task_y + 140),
+            font_size=16,
             bg_color='#E8F5E9',
             border_color=Color.GREEN,
             border_width=2
         )
         
         # T0+10min: 人提需求 2（同时 Train 还在运行）
-        x3 = track_start + 800
-        self.draw_circle((x3, track_y1), 20, '#FFE5B4', Color.BLACK, 3)
-        self.draw_text_multiline('需求2', (x3, track_y1 - 8), 14, Color.BLACK, 'center')
+        x3 = track_start + 450
+        self.draw_circle((x3, track_y1), 25, '#FFE5B4', Color.BLACK, 3)
+        self.draw_text_multiline('需求2', (x3, track_y1 - 10), 16, Color.BLACK, 'center')
         
         # 显示 Train 正在运行
+        x_mid = track_start + 550
         self.draw.line(
-            [(x2 + 80, track_y2), (x3 - 100, track_y2)],
+            [(x_train1 + 90, track_y2), (x_mid, track_y2)],
             fill=Color.BLUE,
-            width=3
+            width=4
         )
         self.draw_text_multiline(
             '运行中...',
-            ((x2 + x3) // 2, track_y2 - 40),
-            14,
+            ((x_train1 + x_mid) // 2, track_y2 - 50),
+            16,
             Color.BLUE,
             'center'
         )
         
         # T0+15min: Train 到站
-        x4 = track_start + 1100
-        self.draw_circle((x4, track_y2), 30, Color.SUCCESS, Color.DARK_GREEN, 4)
-        self.draw_text_multiline('到站\n✓', (x4, track_y2 - 12), 18, Color.DARK_GREEN, 'center')
+        x4 = track_start + 800
+        self.draw_circle((x4, track_y2), 35, Color.SUCCESS, Color.DARK_GREEN, 5)
+        self.draw_text_multiline('到站\n✓', (x4, track_y2 - 15), 20, Color.DARK_GREEN, 'center')
         
         # 下一班 Train 准备发车（需求2登车）
         self.draw_curved_arrow(
-            (x3, track_y1 + 25),
-            (x4 + 100, track_y2 - 35),
-            control_offset=(50, 50),
+            (x3, track_y1 + 30),
+            (x4 + 150, track_y2 - 50),
+            control_offset=(80, 60),
             color=Color.GRAY,
             width=2
         )
         
         # 新的 Train
-        train_box2 = (x4 + 80, track_y2 - 40, x4 + 220, track_y2 + 40)
+        x_train2 = track_start + 1150
+        train_box2 = (x_train2 - 90, track_y2 - 50, x_train2 + 90, track_y2 + 50)
         self.draw_rounded_rectangle(
             train_box2,
             15,
             '#B4D7FF',
             Color.BLUE,
-            2
+            3
         )
         self.draw_text_multiline(
             '🚂 下一班\n需求2',
-            (x4 + 150, track_y2 - 10),
-            14,
+            (x_train2, track_y2 - 8),
+            16,
             Color.BLACK,
             'center'
         )
@@ -228,7 +232,7 @@ class ConsolidationTrainDiagramGenerator(DiagramGenerator):
     def _draw_legend(self):
         """绘制图例"""
         legend_x = 100
-        legend_y = 650
+        legend_y = 710
         
         legend_items = [
             ('主力开发（人）', Color.HUMAN),
@@ -237,7 +241,7 @@ class ConsolidationTrainDiagramGenerator(DiagramGenerator):
             ('运行过程', '#E8F5E9'),
         ]
         
-        self.draw_legend(legend_items, (legend_x, legend_y), spacing=300)
+        self.draw_legend(legend_items, (legend_x, legend_y), spacing=320)
     
     def _draw_notes(self):
         """绘制说明"""
@@ -249,12 +253,12 @@ class ConsolidationTrainDiagramGenerator(DiagramGenerator):
             '  • 解放重复劳动，可以去喝咖啡 ☕️',
         ]
         
-        y_start = 750
+        y_start = 830
         for i, note in enumerate(notes):
             self.draw.text(
-                (100, y_start + i * 30),
+                (100, y_start + i * 35),
                 note,
-                font=self.get_font(16 if i == 0 else 14),
+                font=self.get_font(18 if i == 0 else 16),
                 fill=Color.BLACK if i == 0 else Color.DARK_GREEN
             )
         
@@ -265,12 +269,12 @@ class ConsolidationTrainDiagramGenerator(DiagramGenerator):
             '  • Token 成本：按需触发，调整间隔',
         ]
         
-        y_start = 950
+        y_start = 1060
         for i, challenge in enumerate(challenges):
             self.draw.text(
-                (100, y_start + i * 30),
+                (100, y_start + i * 35),
                 challenge,
-                font=self.get_font(16 if i == 0 else 14),
+                font=self.get_font(18 if i == 0 else 16),
                 fill=Color.BLACK if i == 0 else Color.DARK_RED
             )
 

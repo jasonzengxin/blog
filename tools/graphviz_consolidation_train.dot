@@ -1,0 +1,155 @@
+digraph ConsolidationTrain {
+    // 图表设置
+    graph [
+        rankdir=LR
+        bgcolor=white
+        fontname="Arial,Microsoft YaHei,SimHei"
+        fontsize=14
+        splines=ortho
+        nodesep=0.5
+        ranksep=1.5
+        compound=true
+    ]
+    
+    node [
+        shape=box
+        style="rounded,filled"
+        fontname="Arial,Microsoft YaHei,SimHei"
+        fontsize=12
+        margin=0.25
+    ]
+    
+    edge [
+        fontname="Arial,Microsoft YaHei,SimHei"
+        fontsize=10
+    ]
+    
+    // 标题
+    Title [
+        label="Consolidation Train 工作流程\n双轨并行：持续需求 + 自动化测试修复"
+        shape=plaintext
+        fontsize=18
+        fontcolor=black
+    ]
+    
+    // 主力开发轨道
+    subgraph cluster_main {
+        label="主力开发 Session (Terminal 1)\n专注创造"
+        fontsize=14
+        style=filled
+        fillcolor="#FFF8E8"
+        color="#FFE5B4"
+        penwidth=2
+        
+        Req0 [label="起点" shape=point width=0.3]
+        Req1 [label="需求1\nT0" fillcolor="#FFE5B4" color=black shape=circle width=0.8]
+        Req2 [label="需求2\nT0+10min" fillcolor="#FFE5B4" color=black shape=circle width=0.8]
+        Req3 [label="需求3\nT0+15min" fillcolor="#FFE5B4" color=black shape=circle width=0.8]
+        ReqEnd [label="持续..." shape=plaintext]
+        
+        Req0 -> Req1 -> Req2 -> Req3 -> ReqEnd [style=bold color=black]
+    }
+    
+    // Consolidation Train 轨道
+    subgraph cluster_train {
+        label="Consolidation Train\n自动化测试修复"
+        fontsize=14
+        style=filled
+        fillcolor="#E8F4FF"
+        color="#B4D7FF"
+        penwidth=2
+        
+        Train0 [label="等待" shape=point width=0.3]
+        
+        subgraph cluster_train1 {
+            label="🚂 Train 1 (T0+5min)"
+            style=filled
+            fillcolor="#B4D7FF"
+            color=blue
+            penwidth=2
+            
+            T1_Compile [label="编译" fillcolor="#E8F5E9"]
+            T1_Test [label="测试" fillcolor="#E8F5E9"]
+            T1_Fix [label="修复" fillcolor="#E8F5E9"]
+            
+            T1_Compile -> T1_Test -> T1_Fix [color=blue]
+        }
+        
+        T1_Done [
+            label="✓ 到站\nT0+15min"
+            fillcolor="#C8FFC8"
+            color=green
+            penwidth=3
+            shape=circle
+            width=1.0
+        ]
+        
+        subgraph cluster_train2 {
+            label="🚂 Train 2 (T0+15min)"
+            style=filled
+            fillcolor="#B4D7FF"
+            color=blue
+            penwidth=2
+            
+            T2_Start [label="需求2\n登车" fillcolor="#FFE5B4"]
+            T2_Process [label="处理中..." fillcolor="#E8F5E9"]
+            
+            T2_Start -> T2_Process [color=blue]
+        }
+        
+        Train0 -> T1_Compile [style=invis]
+        T1_Fix -> T1_Done [color=green penwidth=2]
+        T1_Done -> T2_Start [color=gray style=dashed label="下一班"]
+    }
+    
+    // 需求登车的连接
+    Req1 -> T1_Compile [label="登车\nT0+5min" style=dashed color=gray constraint=false]
+    Req2 -> T2_Start [label="登车\nT0+15min" style=dashed color=gray constraint=false]
+    
+    // 图例
+    Legend [
+        shape=plaintext
+        label=<
+            <TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="8">
+                <TR>
+                    <TD BGCOLOR="#FFE5B4">主力开发（人）</TD>
+                    <TD BGCOLOR="#B4D7FF">Consolidation Train（AI）</TD>
+                </TR>
+                <TR>
+                    <TD BGCOLOR="#C8FFC8">成功到站</TD>
+                    <TD BGCOLOR="#E8F5E9">运行过程</TD>
+                </TR>
+            </TABLE>
+        >
+    ]
+    
+    // 优势说明
+    Advantages [
+        shape=plaintext
+        label=<
+            <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#E4FFE4">
+                <TR><TD ALIGN="LEFT"><B>💡 核心优势：</B></TD></TR>
+                <TR><TD ALIGN="LEFT">• 人可以持续提需求，无需等待</TD></TR>
+                <TR><TD ALIGN="LEFT">• AI 自动处理编译、测试、修复</TD></TR>
+                <TR><TD ALIGN="LEFT">• 需求按顺序处理，避免冲突</TD></TR>
+                <TR><TD ALIGN="LEFT">• 解放重复劳动，可以去喝咖啡 ☕️</TD></TR>
+            </TABLE>
+        >
+    ]
+    
+    // 挑战说明
+    Challenges [
+        shape=plaintext
+        label=<
+            <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#FFE4E4">
+                <TR><TD ALIGN="LEFT"><B>⚠️  挑战：</B></TD></TR>
+                <TR><TD ALIGN="LEFT">• 需求冲突：通过顺序到站解决</TD></TR>
+                <TR><TD ALIGN="LEFT">• Token 成本：按需触发，调整间隔</TD></TR>
+            </TABLE>
+        >
+    ]
+    
+    // 布局
+    Legend -> Advantages [style=invis]
+    Advantages -> Challenges [style=invis]
+}
