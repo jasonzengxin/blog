@@ -4,40 +4,41 @@ digraph VibeProgrammingComparison {
         rankdir=TB
         bgcolor=white
         fontname="Arial,Microsoft YaHei,SimHei"
-        fontsize=14
+        fontsize=18
         splines=ortho
-        nodesep=1.0
-        ranksep=0.8
+        nodesep=1.2
+        ranksep=1.0
         compound=true
+        size="18,20"
     ]
     
     node [
         shape=box
         style="rounded,filled"
         fontname="Arial,Microsoft YaHei,SimHei"
-        fontsize=13
-        margin=0.3
-        width=3.0
-        height=0.6
+        fontsize=16
+        margin=0.4
+        width=3.5
+        height=0.8
     ]
     
     edge [
         fontname="Arial,Microsoft YaHei,SimHei"
-        fontsize=11
+        fontsize=14
     ]
     
     // 标题
     Title [
         label="传统开发方式 vs Vibe Programming"
         shape=plaintext
-        fontsize=20
+        fontsize=26
         fontcolor=black
     ]
     
     // 左侧：传统方式
     subgraph cluster_traditional {
         label="传统开发方式"
-        fontsize=16
+        fontsize=20
         style=dashed
         color=gray
         
@@ -51,12 +52,12 @@ digraph VibeProgrammingComparison {
         TFeatures [
             shape=plaintext
             label=<
-                <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#FFE4E4">
-                    <TR><TD ALIGN="LEFT"><B>特点：</B></TD></TR>
-                    <TR><TD ALIGN="LEFT">❌ 前期需要想清楚所有细节</TD></TR>
-                    <TR><TD ALIGN="LEFT">❌ 设计错误成本高</TD></TR>
-                    <TR><TD ALIGN="LEFT">❌ 周期长，反馈慢</TD></TR>
-                    <TR><TD ALIGN="LEFT">❌ 需要手写大量代码</TD></TR>
+                <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="10" BGCOLOR="#FFE4E4">
+                    <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="18"><B>特点：</B></FONT></TD></TR>
+                    <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="16">❌ 前期需要想清楚所有细节</FONT></TD></TR>
+                    <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="16">❌ 设计错误成本高</FONT></TD></TR>
+                    <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="16">❌ 周期长，反馈慢</FONT></TD></TR>
+                    <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="16">❌ 需要手写大量代码</FONT></TD></TR>
                 </TABLE>
             >
         ]
@@ -68,7 +69,7 @@ digraph VibeProgrammingComparison {
     // 右侧：Vibe Programming
     subgraph cluster_vibe {
         label="Vibe Programming"
-        fontsize=16
+        fontsize=20
         style=dashed
         color=green
         
@@ -82,24 +83,24 @@ digraph VibeProgrammingComparison {
             fillcolor="#FFFACD"
             color=orange
             penwidth=3
-            fontsize=15
+            fontsize=20
         ]
         
         VFeatures [
             shape=plaintext
             label=<
-                <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="6" BGCOLOR="#E4FFE4">
-                    <TR><TD ALIGN="LEFT"><B>特点：</B></TD></TR>
-                    <TR><TD ALIGN="LEFT">✅ 可以边做边想</TD></TR>
-                    <TR><TD ALIGN="LEFT">✅ 试错成本极低</TD></TR>
-                    <TR><TD ALIGN="LEFT">✅ 即时反馈，快速调整</TD></TR>
-                    <TR><TD ALIGN="LEFT">✅ AI自动生成代码</TD></TR>
+                <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="10" BGCOLOR="#E4FFE4">
+                    <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="18"><B>特点：</B></FONT></TD></TR>
+                    <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="16">✅ 可以边做边想</FONT></TD></TR>
+                    <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="16">✅ 试错成本极低</FONT></TD></TR>
+                    <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="16">✅ 即时反馈，快速调整</FONT></TD></TR>
+                    <TR><TD ALIGN="LEFT"><FONT POINT-SIZE="16">✅ AI自动生成代码</FONT></TD></TR>
                 </TABLE>
             >
         ]
         
         V1 -> V2 -> V3
-        V3 -> V1 [label="循环" style=dashed color=blue]
+        V3 -> V1 [label="循环" style=dashed color=blue fontsize=14]
         
         VCenter [style=invis]
         V2 -> VCenter [style=invis]
@@ -113,8 +114,8 @@ digraph VibeProgrammingComparison {
         style="rounded,filled"
         fillcolor="#FFFACD"
         color=orange
-        fontsize=13
-        width=10
+        fontsize=20
+        width=14
     ]
     
     Title [rank=source]

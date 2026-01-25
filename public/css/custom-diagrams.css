@@ -1,0 +1,56 @@
+/* 自定义流程图样式 - 让图片显示更大更清晰 */
+
+/* 流程图容器 - 突破文章宽度限制 */
+.diagram-container {
+  width: 100%;
+  max-width: 1400px;  /* 比默认文章宽度更大 */
+  margin: 2rem auto;
+  padding: 0;
+  overflow-x: auto;  /* 如果图片太宽，允许横向滚动 */
+}
+
+/* 流程图图片 - 全宽显示 */
+.diagram-container img,
+.article-entry .diagram-large {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 1.5rem auto;
+  box-shadow: 0 4px 12px 4px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+/* 鼠标悬停时轻微放大 */
+.diagram-container img:hover,
+.article-entry .diagram-large:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 响应式设计 - 移动端 */
+@media (max-width: 768px) {
+  .diagram-container {
+    max-width: 100%;
+    margin: 1rem auto;
+  }
+  
+  .diagram-container img,
+  .article-entry .diagram-large {
+    margin: 1rem auto;
+    box-shadow: 0 2px 8px 2px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* 针对横向流程图（如 Consolidation Train）的特殊处理 */
+.diagram-wide {
+  width: 100%;
+  max-width: 1600px;  /* 更宽的横向图表 */
+}
+
+/* 图片居中容器 */
+.diagram-center {
+  text-align: center;
+  margin: 2rem 0;
+}

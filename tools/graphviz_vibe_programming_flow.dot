@@ -4,34 +4,35 @@ digraph VibeProgrammingFlow {
         rankdir=TB
         bgcolor=white
         fontname="Arial,Microsoft YaHei,SimHei"
-        fontsize=14
+        fontsize=18
         splines=ortho
-        nodesep=0.8
-        ranksep=1.0
+        nodesep=1.0
+        ranksep=1.2
+        size="16,18"
     ]
     
     node [
         shape=box
         style="rounded,filled"
         fontname="Arial,Microsoft YaHei,SimHei"
-        fontsize=13
-        margin=0.3
-        width=3.5
-        height=0.8
+        fontsize=16
+        margin=0.4
+        width=4.0
+        height=1.0
     ]
     
     edge [
         fontname="Arial,Microsoft YaHei,SimHei"
-        fontsize=11
+        fontsize=14
         labelfloat=true
-        labeldistance=2.0
+        labeldistance=2.5
     ]
     
     // 标题
     Title [
         label="Vibe Programming 工作流程"
         shape=plaintext
-        fontsize=20
+        fontsize=26
         fontcolor=black
     ]
     
@@ -52,14 +53,14 @@ digraph VibeProgrammingFlow {
         label="3. 可运行的代码"
         fillcolor="#E5E5E5"
         color=black
-        fontsize=15
+        fontsize=18
     ]
     
     Test [
         label="4. 人：测试和反馈"
         fillcolor="#FFE4E4"
         color=black
-        fontsize=15
+        fontsize=18
     ]
     
     // 分支节点
@@ -82,7 +83,7 @@ digraph VibeProgrammingFlow {
         fillcolor="#E4FFE4"
         color=green
         penwidth=2
-        fontsize=14
+        fontsize=17
     ]
     
     Next [
@@ -90,18 +91,18 @@ digraph VibeProgrammingFlow {
         fillcolor="#C8FFC8"
         color=green
         penwidth=2
-        fontsize=15
+        fontsize=18
     ]
     
     // 图例
     Legend [
         shape=plaintext
         label=<
-            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="8">
-                <TR><TD BGCOLOR="#FFE5B4">人的活动</TD></TR>
-                <TR><TD BGCOLOR="#B4D7FF">AI的活动</TD></TR>
-                <TR><TD BGCOLOR="#E5E5E5">代码状态</TD></TR>
-                <TR><TD BGCOLOR="#FFE4E4">决策点</TD></TR>
+            <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="12">
+                <TR><TD BGCOLOR="#FFE5B4"><FONT POINT-SIZE="16">人的活动</FONT></TD></TR>
+                <TR><TD BGCOLOR="#B4D7FF"><FONT POINT-SIZE="16">AI的活动</FONT></TD></TR>
+                <TR><TD BGCOLOR="#E5E5E5"><FONT POINT-SIZE="16">代码状态</FONT></TD></TR>
+                <TR><TD BGCOLOR="#FFE4E4"><FONT POINT-SIZE="16">决策点</FONT></TD></TR>
             </TABLE>
         >
     ]
@@ -112,23 +113,23 @@ digraph VibeProgrammingFlow {
         style="rounded,filled"
         fillcolor="#FFFACD"
         color=orange
-        fontsize=14
+        fontsize=18
     ]
     
     // 主流程
     Title -> Start [style=invis]
-    Start -> AI [label="context:\n语言、风格" fontsize=10]
+    Start -> AI [label="context:\n语言、风格" fontsize=13]
     AI -> Code
     Code -> Test
     
     // 分支流程
-    Test -> Error [label="粘贴错误信息" color=red fontcolor=red]
-    Test -> Feature [label="提出改进要求" color=orange fontcolor=orange]
+    Test -> Error [label="粘贴错误信息" color=red fontcolor=red fontsize=13]
+    Test -> Feature [label="提出改进要求" color=orange fontcolor=orange fontsize=13]
     Test -> Success [color=green]
     
     // 反馈循环
-    Error -> AI [label="修复" color=red style=dashed]
-    Feature -> AI [label="改进" color=orange style=dashed]
+    Error -> AI [label="修复" color=red style=dashed fontsize=13]
+    Feature -> AI [label="改进" color=orange style=dashed fontsize=13]
     Success -> Next [color=green penwidth=2]
     
     // 布局辅助

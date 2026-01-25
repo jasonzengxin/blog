@@ -146,9 +146,13 @@ Vibe Programming 提供了一种全新的思路：**用模糊的需求开始，�
 
 下面的流程图展示了 Vibe Programming 的完整迭代循环：
 
+<div class="diagram-container">
 {% asset_img vibe-programming-flow.png "Vibe Programming 流程图" %}
+</div>
 
+<div class="diagram-container">
 {% asset_img vibe-programming-comparison.png "Vibe Programming 对比图" %}
+</div>
 
 
 #### 进阶想法：Consolidation Train 模式
@@ -229,7 +233,9 @@ Vibe Programming 提供了一种全新的思路：**用模糊的需求开始，�
 
 **Consolidation Train 流程示意图**
 
+<div class="diagram-container diagram-wide">
 {% asset_img consolidation-train-flow.png "Consolidation Train 工作流程" %}
+</div>
 
 ---
 
