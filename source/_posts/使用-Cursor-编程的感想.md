@@ -139,9 +139,9 @@ Vibe Programming 提供了一种全新的思路：**用模糊的需求开始，�
 
 下面的流程图展示了 Vibe Programming 的完整迭代循环：
 
-![Vibe Programming 流程图](./vibe-programming-flow.png)
+{% asset_img vibe-programming-flow.png "Vibe Programming 流程图" %}
 
-![Vibe Programming 对比图](./vibe-programming-comparison.png)
+{% asset_img vibe-programming-comparison.png "Vibe Programming 对比图" %}
 
 ---
 
